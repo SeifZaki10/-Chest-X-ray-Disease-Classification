@@ -65,3 +65,13 @@ streamlit run app.py
 ## ⚠️ Disclaimer
 
 This project is intended for educational and research purposes only and should not be used for medical diagnosis.
+
+## 📷 Application Demo
+
+### Upload Chest X-ray
+
+![Upload](images/upload.png)
+
+### Prediction Results
+
+![Prediction](images/prediction.png)
