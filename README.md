@@ -2,10 +2,6 @@
 
 > End-to-End Deep Learning | Transfer Learning | Streamlit Deployment
 
-<p align="center">
-  <img src="images/prediction.png" width="850">
-</p>
-
 An end-to-end deep learning application for **multi-label chest X-ray disease classification** using **DenseNet121**, **TensorFlow**, and **Streamlit**.
 
 ---
@@ -52,24 +48,24 @@ The web application allows users to upload a chest X-ray image and receive disea
 
 ## 🧠 Model
 
-**Architecture**
+### Architecture
 
 - DenseNet121 (ImageNet Pretrained)
 
-**Transfer Learning**
+### Transfer Learning
 
 - Feature Extraction
 - Fine-Tuning
 
-**Task**
+### Task
 
 - Multi-label Image Classification
 
-**Activation Function**
+### Activation Function
 
 - Sigmoid
 
-**Loss Function**
+### Loss Function
 
 - Binary Cross-Entropy
 
@@ -104,9 +100,6 @@ The model was trained using the **NIH Chest X-ray Dataset**, which contains fron
 ├── labels.py
 ├── best_model.keras
 ├── requirements.txt
-├── images
-│   ├── upload.png
-│   └── prediction.png
 ├── README.md
 └── Chest_Xray_Project.ipynb
 ```
@@ -127,25 +120,9 @@ streamlit run app.py
 
 ---
 
-## 📷 Application Demo
-
-### Upload Chest X-ray
-
-<p align="center">
-  <img src="images/upload.png" width="750">
-</p>
-
-### Prediction Results
-
-<p align="center">
-  <img src="images/prediction.png" width="750">
-</p>
-
----
-
 ## ⚠️ Disclaimer
 
-This project was developed for **educational and research purposes only** and **must not be used for medical diagnosis or clinical decision-making**.
+This project was developed for **educational and research purposes only** and **must not be used for medical diagnosis or clinical decision-making.**
 
 ---
 
