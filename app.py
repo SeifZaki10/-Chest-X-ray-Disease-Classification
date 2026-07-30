@@ -21,13 +21,26 @@ st.set_page_config(
 model = load_model()
 
 # -----------------------------
+# Sidebar
+# -----------------------------
+with st.sidebar:
+    st.header("Model Information")
+
+    st.write("**Architecture:** DenseNet121")
+    st.write("**Task:** Multi-label Classification")
+    st.write("**Classes:** 14 Thoracic Diseases")
+    st.write("**Framework:** TensorFlow / Keras")
+    st.write("**Transfer Learning:** Feature Extraction + Fine-Tuning")
+    st.write("**Deployment:** Streamlit")
+
+# -----------------------------
 # Title
 # -----------------------------
 st.title("🩻 Chest X-ray Disease Classification")
 
 st.markdown("""
-Upload a **Chest X-ray image** and the model will predict the probability
-of **14 thoracic diseases** using a **DenseNet121** deep learning model.
+Upload a **Chest X-ray image** to receive the predicted probabilities for **14 thoracic diseases**
+using a **DenseNet121 Transfer Learning** model.
 """)
 
 st.divider()
@@ -46,32 +59,33 @@ if uploaded_file is not None:
 
     st.image(
         image,
-        caption="Uploaded Image",
-        use_container_width=True
+        caption="Uploaded Chest X-ray",
+        width=400
     )
 
-    if st.button("Predict"):
+    if st.button("🔍 Analyze Chest X-ray"):
 
         with st.spinner("Analyzing image..."):
 
             predictions = predict(model, image)
 
-        # Create DataFrame
         results = pd.DataFrame({
             "Disease": DISEASES,
-            "Probability": predictions
+            "Probability": predictions * 100
         })
-
-        results["Probability"] *= 100
 
         results = results.sort_values(
             by="Probability",
             ascending=False
         )
 
-        st.success("Prediction Completed ✅")
+        st.success("Prediction Completed Successfully ✅")
 
         st.subheader("Top Predictions")
+
+        st.caption(
+            "The table below shows the five diseases with the highest predicted probabilities."
+        )
 
         st.dataframe(
             results.head(5).style.format({
@@ -80,18 +94,15 @@ if uploaded_file is not None:
             use_container_width=True
         )
 
-        st.subheader("All Diseases")
-
-        st.dataframe(
-            results.style.format({
-                "Probability": "{:.2f}%"
-            }),
-            use_container_width=True
-        )
+        if results.iloc[0]["Probability"] < 20:
+            st.warning(
+                "No disease was predicted with high confidence."
+            )
 
 st.divider()
 
+st.caption("Developed by Seif Zaki")
+
 st.info(
-    "⚠️ This application is for educational purposes only and "
-    "must not be used for medical diagnosis."
+    "⚠️ This application is intended for educational purposes only and should not be used for medical diagnosis."
 )
